@@ -1,7 +1,7 @@
 module List
   def menu_ready(arr)
     arr.each_with_index do |name, index|
-      puts "#{index += 1}) #{name[:item]} will cost $#{name[:price]}"
+      puts "#{index}) #{name[:item]} will cost $#{name[:price]}"
     end
   end
 end
