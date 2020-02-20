@@ -1,4 +1,13 @@
+module List
+  def menu_ready(arr)
+    arr.each_with_index do |name, index|
+      puts "#{index}) #{name[:item]} will cost $#{name[:price]}"
+    end
+  end
+end
+
 class MainDish
+  include List
   attr_accessor :item, :price
 
   def initialize(item, price)
@@ -11,9 +20,10 @@ class MainDish
     new_item["item".to_sym] = @item
     new_item["price".to_sym] = @price
     @main_list << new_item
-    puts @main_list
+    menu_ready(@main_list)
   end
 end
+
 
 class SideDish
   attr_accessor :item, :price
@@ -47,7 +57,6 @@ class LunchLady
     pizza = MainDish.new('pizza', 4.50)
     pizza.make_list
   end
-
 end
 
 carson = LunchLady.new("carson")
