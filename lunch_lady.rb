@@ -42,9 +42,9 @@ class LunchLady
   end
 
   def show_main_menu
-    MainDish.new('noodles', 3.50)
-    carrots.make_list
-    MainDish.new('pizza', 4.50)
+    noodles = MainDish.new('noodles', 3.50)
+    noodles.make_list
+    pizza = MainDish.new('pizza', 4.50)
     pizza.make_list
   end
 
