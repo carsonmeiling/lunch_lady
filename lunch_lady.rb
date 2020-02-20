@@ -1,7 +1,7 @@
 module List
   def menu_ready(arr)
     arr.each_with_index do |name, index|
-      puts "#{index}) #{name[:item]} will cost $#{name[:price]}"
+      puts "#{index}) #{name[:item]}: $#{name[:price]}"
     end
   end
 end
@@ -26,6 +26,7 @@ end
 
 
 class SideDish
+  include List
   attr_accessor :item, :price
   
   def initialize(item, price)
@@ -39,7 +40,7 @@ class SideDish
     new_item["item".to_sym] = @item
     new_item["price".to_sym] = @price
     @side_list << new_item
-    puts @side_list
+    menu_ready(@side_list)
   end
 end
 
@@ -59,8 +60,18 @@ class LunchLady
     tacos = MainDish.new('tacos', 5.99)
     tacos.make_list
   end
+
+  def make_side_dish_menu
+    warm_water = SideDish.new('warm water', 2.79)
+    warm_water.make_list
+    wings = SideDish.new('wings', 7.99)
+    wings.make_list
+    toast = SideDish.new('toast', 1.99)
+    toast.make_list
+  end
 end
 
 carson = LunchLady.new("carson")
 
 carson.show_main_menu
+carson.make_side_dish_menu
