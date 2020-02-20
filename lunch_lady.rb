@@ -1,7 +1,7 @@
 module List
   def menu_ready(arr)
     arr.each_with_index do |name, index|
-      puts "#{index}) #{name[:item]} will cost $#{name[:price]}"
+      puts "#{index += 1}) #{name[:item]} will cost $#{name[:price]}"
     end
   end
 end
@@ -56,6 +56,8 @@ class LunchLady
     noodles.make_list
     pizza = MainDish.new('pizza', 4.50)
     pizza.make_list
+    tacos = MainDish.new('tacos', 5.99)
+    tacos.make_list
   end
 end
 
