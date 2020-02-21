@@ -3,10 +3,11 @@
 $main_list = []
 $side_list = []
 $user_orders = []
+
+
 module List
   #loops through arr and puts contents
   def menu_ready(arr)
-    p arr
     arr.each_with_index do |name, index|
       puts "#{index}) #{name[:item]}: $#{name[:price]}"
     end
@@ -46,13 +47,13 @@ class SideDish
     new_item["item".to_sym] = @item
     new_item["price".to_sym] = @price
     $side_list << new_item
-    menu_ready($side_list)
   end
 end
 
 
 class LunchLady
   include List
+
   def initialize
     # @name = name
     @main_dish = []
@@ -69,9 +70,19 @@ class LunchLady
     show_main_menu
     user_choice = gets.strip.to_i
     $user_orders << $main_list[user_choice]
-    puts $user_orders
+    side_dish_choice
   end
   
+  def side_dish_choice
+    #allows the user to select a side choice
+    puts 
+    puts "what side dish would you like?"
+    make_side_dish_menu
+    user_choice = gets.strip.to_i
+    $user_orders<<$side_list[user_choice]
+    puts $user_orders
+    check_for_sides
+  end
   
   
   def show_main_menu
@@ -84,7 +95,7 @@ class LunchLady
     tacos.make_list
     menu_ready($main_list)
   end
-
+  
   def make_side_dish_menu
     #calls side dish class
     warm_water = SideDish.new('warm water', 2.79)
@@ -93,6 +104,16 @@ class LunchLady
     wings.make_list
     toast = SideDish.new('toast', 1.99)
     toast.make_list
+    menu_ready($side_list)
+  end
+end
+
+def check_for_sides
+  #check for number of dishes, and runs make_side_choice if only one.
+  if $user_orders.length == 3
+    #run adjust order, new method
+  else
+    side_dish_choice
   end
 end
 
